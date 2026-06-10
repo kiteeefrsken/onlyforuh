@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>only4uh..</title>
+
+<style>
+body{
+    margin:0;
+    background:black;
+    color:white;
+    font-family:Arial,sans-serif;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    text-align:center;
+    padding:20px;
+}
+
+#box{
+    width:100%;
+    max-width:700px;
+}
+
+#text{
+    font-size:32px;
+    line-height:1.5;
+}
+
+button{
+    padding:10px 20px;
+    margin:8px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+input{
+    padding:10px;
+    font-size:16px;
+    width:250px;
+    text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<div id="box">
+
+<div id="text">
+Did you come from Kite's YouTube link?
+</div>
+
+<div id="buttons">
+<button onclick="startAnswer('yes')">Yes</button>
+<button onclick="startAnswer('no')">No</button>
+</div>
+
+</div>
+
+<script>
+
+function startAnswer(answer){
+
+    if(answer==="no"){
+        document.getElementById("text").innerHTML="Access denied.";
+        document.getElementById("buttons").innerHTML="";
+        return;
+    }
+
+    document.getElementById("text").innerHTML=
+    "What is your name?<br><small>It will only work for the right person.</small>";
+
+    document.getElementById("buttons").innerHTML=`
+        <input id="nameInput" placeholder="Enter your name">
+        <br><br>
+        <button onclick="checkName()">Submit</button>
+    `;
+}
+
+function checkName(){
+
+    let name=document.getElementById("nameInput")
+        .value
+        .trim()
+        .toLowerCase();
+
+    if(name!=="ayesha"){
+        document.getElementById("text").innerHTML="Wrong person.";
+        document.getElementById("buttons").innerHTML="";
+        return;
+    }
+
+    document.getElementById("text").innerHTML=
+    "Are you mad at me?";
+
+    document.getElementById("buttons").innerHTML=`
+        <button onclick="madAnswer('yes')">Yes</button>
+        <button onclick="madAnswer('no')">No</button>
+    `;
+}
+
+function madAnswer(answer){
+
+    if(answer==="yes"){
+
+        document.getElementById("text").innerHTML=
+        "Sorry... I wanted to tell you something.";
+
+        document.getElementById("buttons").innerHTML=`
+            <button onclick="finalTyping()">Okayyy</button>
+            <button onclick="dontWannaHear()">Don't wanna hear</button>
+        `;
+
+    }else{
+
+        document.getElementById("text").innerHTML=
+        "Okay okay good.<br><br>Wanna hear something?";
+
+        document.getElementById("buttons").innerHTML=`
+            <button onclick="finalTyping()">Okayyy</button>
+            <button onclick="dontWannaHear()">Don't wanna hear</button>
+        `;
+    }
+}
+
+function dontWannaHear(){
+
+    document.getElementById("text").innerHTML="plzz";
+
+    document.getElementById("buttons").innerHTML=`
+        <button onclick="finalTyping()">Okayyy</button>
+        <button onclick="dontWannaHear()">Nooo</button>
+    `;
+}
+
+function finalTyping(){
+
+    document.getElementById("buttons").innerHTML="";
+
+    let text=document.getElementById("text");
+
+    let message=
+    "bishhh i love u can't you understand this";
+
+    let i=0;
+
+    text.innerHTML="";
+
+    let typing=setInterval(()=>{
+
+        text.innerHTML=
+        message.substring(0,i+1);
+
+        i++;
+
+        if(i>=message.length){
+
+            clearInterval(typing);
+
+            setTimeout(()=>{
+
+                document.getElementById("text").innerHTML=
+                "Wanna hear more?";
+
+                document.getElementById("buttons").innerHTML=`
+                    <button onclick="jokeReveal()">Yes</button>
+                    <button onclick="hearMoreNo()">Nooo</button>
+                `;
+
+            },2000);
+
+        }
+
+    },120);
+}
+
+function hearMoreNo(){
+
+    document.getElementById("text").innerHTML="plzz";
+
+    setTimeout(()=>{
+
+        document.getElementById("text").innerHTML=
+        "Wanna hear more?";
+
+        document.getElementById("buttons").innerHTML=`
+            <button onclick="jokeReveal()">Yes</button>
+            <button onclick="hearMoreNo()">Nooo</button>
+        `;
+
+    },1000);
+}
+
+function jokeReveal(){
+
+    document.getElementById("buttons").innerHTML="";
+
+    let text=document.getElementById("text");
+
+    let message=
+    "Nah, did you really believe that? I was just joking.";
+
+    let i=0;
+
+    text.innerHTML="";
+
+    let typing=setInterval(()=>{
+
+        text.innerHTML=
+        message.substring(0,i+1);
+
+        i++;
+
+        if(i>=message.length){
+            clearInterval(typing);
+        }
+
+    },120);
+}
+
+</script>
+
+</body>
+</html>
